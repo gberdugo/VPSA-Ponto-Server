@@ -4,14 +4,14 @@
     xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     id="WebApp_ID" version="2.5">
-    <display-name>Spring-Hibernate-Template</display-name>
+    <display-name>VPSA-Ponto</display-name>
  
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>spring</servlet-name>
+        <servlet-name>vpsa-ponto</servlet-name>
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
@@ -21,8 +21,23 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
     <servlet-mapping>
-        <servlet-name>spring</servlet-name>
+        <servlet-name>vpsa-ponto</servlet-name>
         <url-pattern>/people/*</url-pattern>
     </servlet-mapping>
+    
+    <filter>
+		<filter-name>openSessionFactory</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>sessionFactoryBeanName</param-name>
+			<param-value>sessionFactory</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>openSessionFactory</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
