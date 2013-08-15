@@ -6,6 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.hibernate.impl.CriteriaImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,28 +18,29 @@ import com.example.model.Person;
 
 @Service
 public class PersonServiceImpl implements PersonService {
+	
+	private HibernateTemplate hibernateTemplate;
+	
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		hibernateTemplate = new HibernateTemplate(sessionFactory);
+	}
 
-    @PersistenceContext
-    EntityManager em;
-        
     @Transactional
     public void addPerson(Person person) {
-        em.persist(person);
+        hibernateTemplate.save(person);
     }
 
     @Transactional
     public List<Person> listPeople() {
-        CriteriaQuery<Person> c = em.getCriteriaBuilder().createQuery(Person.class);
-        c.from(Person.class);
-        return em.createQuery(c).getResultList();
+        return (List<Person>) hibernateTemplate.find("from " + Person.class.getName());
     }
 
     @Transactional
     public void removePerson(Integer id) {
-        Person person = em.find(Person.class, id);
+        Person person = hibernateTemplate.get(Person.class, id);
         if (null != person) {
-            em.remove(person);
+            hibernateTemplate.delete(person);
         }
-    }
-    
+    }   
 }
