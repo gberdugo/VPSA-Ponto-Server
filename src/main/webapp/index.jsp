@@ -92,7 +92,7 @@
 
 <div style="margin-bottom: 20px">
   This is a template for a web application that uses Spring MVC and Hibernate. The sample code is a simple CRUD page
-  that manipulates records for a single model object. To try it out go to the <a href="/people/">people page</a>. Then
+  that manipulates records for a single model object. To try it out go to the <a href="/funcionario/novo">people page</a>. Then
   use Eclipse or the Command Line to deploy some changes.
 </div>
 

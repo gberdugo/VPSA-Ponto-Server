@@ -20,7 +20,7 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
-		<property name="packagesToScan" value="com.example.model" />
+		<property name="packagesToScan" value="br.berdugo.vpsa.model" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
@@ -33,7 +33,7 @@
 	       
 	<beans profile="default">
 		<bean id="config" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-			<property name="location" value="classpath:/jdbc.properties" />
+			<property name="location" value="classpath:/jdbc_prod.properties" />
 		</bean>
 		
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">

@@ -24,9 +24,9 @@
     
     <servlet-mapping>
         <servlet-name>vpsa-ponto</servlet-name>
-        <url-pattern>/people/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
-    
+    <!--
     <filter>
 		<filter-name>openSessionFactory</filter-name>
 		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
@@ -40,4 +40,5 @@
 		<filter-name>openSessionFactory</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
 </web-app>

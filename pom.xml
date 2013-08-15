@@ -10,6 +10,7 @@
     <properties>
         <org.springframework.version>3.2.4.RELEASE</org.springframework.version>
         <org.hibernate.version>3.6.10.Final</org.hibernate.version>
+        <org.slf4j.version>1.7.5</org.slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -66,6 +67,11 @@
         	<version>${org.hibernate.version}</version>
         </dependency>
         <dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-validator</artifactId>
+        	<version>4.3.0.Final</version>
+        </dependency>
+        <dependency>
         	<groupId>javassist</groupId>
         	<artifactId>javassist</artifactId>
         	<version>3.12.1.GA</version>
@@ -73,12 +79,12 @@
         <dependency>
         	<groupId>org.slf4j</groupId>
         	<artifactId>slf4j-log4j12</artifactId>
-        	<version>1.7.5</version>
+        	<version>${org.slf4j.version}</version>
         </dependency>
         <dependency>
         	<groupId>org.slf4j</groupId>
         	<artifactId>slf4j-api</artifactId>
-        	<version>1.7.5</version>
+        	<version>${org.slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.jsimone</groupId>
