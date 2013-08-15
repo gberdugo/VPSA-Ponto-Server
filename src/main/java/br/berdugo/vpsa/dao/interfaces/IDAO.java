@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IDAO<T> {
 	
-	public Class<T> getPersistenceClass();
+	public Class<T> getPersistentClass();
 	
 	public T save(T entity);
 	

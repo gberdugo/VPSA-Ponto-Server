@@ -5,34 +5,35 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Session;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.berdugo.vpsa.dao.interfaces.IDAO;
 
 @SuppressWarnings("unchecked")
-public abstract class BaseDAO<T> extends HibernateDaoSupport implements IDAO<T> {
+public abstract class BaseDAO<T> implements IDAO<T> {
 
 	private static final Log logger = LogFactory.getLog(BaseDAO.class);
 	
-	private Class<T> persistenceClass;
+	private Class<T> persistentClass;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public BaseDAO() {
-		this.persistenceClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+		this.persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
 				.getActualTypeArguments()[0];
 	}
 
 	@Override
-	public Class<T> getPersistenceClass() {
-		return persistenceClass;
+	public Class<T> getPersistentClass() {
+		return persistentClass;
 	}
 
 	@Override
 	public T save(T entity) {
 		try {
-			final Session session = getSession();
-		
-			session.saveOrUpdate(entity);
+			this.sessionFactory.getCurrentSession().saveOrUpdate(entity);
 		} catch (Exception exception) {
 			logger.error(exception);
 		}
@@ -43,9 +44,7 @@ public abstract class BaseDAO<T> extends HibernateDaoSupport implements IDAO<T> 
 	@Override
 	public List<T> listAll() {
 		try {
-			final Session session = getSession();
-		
-			return (List<T>)session.createCriteria(getPersistenceClass()).list();
+			return (List<T>)this.sessionFactory.getCurrentSession().createCriteria(getPersistentClass()).list();
 		} catch (Exception exception) {
 			logger.error(exception);
 		}
@@ -56,9 +55,7 @@ public abstract class BaseDAO<T> extends HibernateDaoSupport implements IDAO<T> 
 	@Override
 	public T findById(Long id) {
 		try {
-			final Session session = getSession();
-			
-			return (T) session.load(persistenceClass, id);
+			return (T)this.sessionFactory.getCurrentSession().load(getPersistentClass(), id);
 		} catch (Exception exception) {
 			logger.error(exception);
 		}
@@ -68,9 +65,7 @@ public abstract class BaseDAO<T> extends HibernateDaoSupport implements IDAO<T> 
 	@Override
 	public void delete(Long id) {
 		try {
-			final Session session = getSession();
-			
-			session.delete(findById(id));
+			this.sessionFactory.getCurrentSession().delete(findById(id));
 		} catch (Exception exception) {
 			logger.error(exception);
 		}

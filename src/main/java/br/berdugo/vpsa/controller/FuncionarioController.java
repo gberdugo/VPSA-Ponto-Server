@@ -12,6 +12,7 @@ import br.berdugo.vpsa.model.Funcionario;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 
 @Controller
+@RequestMapping(value = "/funcionario")
 @Transactional(readOnly = true, rollbackFor = Exception.class)
 public class FuncionarioController {
 
@@ -23,6 +24,11 @@ public class FuncionarioController {
 
         service.cadastrar(funcionario);
 
+        return "funcionario/novo";
+    }
+    
+    @RequestMapping(value = "/novo", method = RequestMethod.GET)
+    public String novo() {
         return "funcionario/novo";
     }
 }
