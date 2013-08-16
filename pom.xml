@@ -11,6 +11,7 @@
         <org.springframework.version>3.2.4.RELEASE</org.springframework.version>
         <org.hibernate.version>3.6.10.Final</org.hibernate.version>
         <org.slf4j.version>1.7.5</org.slf4j.version>
+        <org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -92,12 +93,23 @@
             <version>7.0.34.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.codehaus.jackson</groupId>
+        	<artifactId>jackson-mapper-asl</artifactId>
+        	<version>${org.codehaus.jackson.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>junit</groupId>
+        	<artifactId>junit</artifactId>
+        	<version>4.11</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -129,6 +141,24 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+            	<groupId>org.codehaus.mojo</groupId>
+            	<artifactId>native2ascii-maven-plugin</artifactId>
+            	<version>1.0-beta-1</version>
+            	<executions>
+            		<execution>
+            			<phase>package</phase>
+            			<goals>
+            				<goal>native2ascii</goal>
+            			</goals>
+            			<configuration>
+            				<src>src/main/resources/</src>
+            				<dest>${project.build.directory}/classes</dest>
+            				<encoding>${project.build.sourceEncoding}</encoding>
+            			</configuration>
+            		</execution>
+            	</executions>
             </plugin>
         </plugins>
     </build>

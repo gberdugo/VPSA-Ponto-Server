@@ -12,7 +12,7 @@ public class FuncionarioService implements IFuncionarioService {
 	
 	@Autowired
 	private IFuncionarioDAO dao;
-
+	
 	@Override
 	public Funcionario cadastrar(Funcionario funcionario) {
 		return dao.save(funcionario);
