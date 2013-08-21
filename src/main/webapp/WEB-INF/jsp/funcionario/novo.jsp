@@ -27,8 +27,8 @@
     					cache: false,	 
     					data:$("#formNovo").serialize(),
     					success: novoResult, 
-    					error: function() {
-    						alert('Error while request..');
+    					error: function(e) {
+    						alert('Error: ' + e);
     					}
     				});
         		});

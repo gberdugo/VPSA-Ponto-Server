@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +19,8 @@ import br.berdugo.vpsa.enums.Status;
 import br.berdugo.vpsa.model.Funcionario;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 import br.berdugo.vpsa.utils.JSONReponse;
+import br.berdugo.vpsa.utils.ValidationException;
+import br.berdugo.vpsa.validator.funcionario.FuncionarioValidator;
 
 @Controller
 @RequestMapping(value = "/funcionario")
@@ -25,19 +30,24 @@ public class FuncionarioController {
     @Autowired
     private IFuncionarioService service;
     
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+    	binder.setValidator(new FuncionarioValidator());
+    }
+    
+    @ResponseBody
     @RequestMapping(value = "/novo", method = RequestMethod.POST)
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public @ResponseBody JSONReponse novo(@ModelAttribute("funcionario") Funcionario funcionario, BindingResult result) {
+    public JSONReponse novo(@Valid @ModelAttribute("funcionario") Funcionario funcionario, BindingResult result) throws Exception {
     	JSONReponse response = new JSONReponse();
-    	
-    	Funcionario retorno = service.cadastrar(funcionario);
-    	
-    	if (retorno == null) {
-    		response.setStatus(Status.ERRO);
-    	} else {
+		
+    	if (!result.hasErrors()) {
+    		Funcionario retorno = service.cadastrar(funcionario);
     		response.setStatus(Status.OK);
+    		response.setRetorno(retorno);
+    	} else {
+    		throw new ValidationException(result.getAllErrors());
     	}
-    	response.setRetorno(retorno);
 
         return response;
     }
@@ -45,5 +55,16 @@ public class FuncionarioController {
     @RequestMapping(value = "/novo", method = RequestMethod.GET)
     public String novo() {
         return "funcionario/novo";
+    }
+    
+    @ExceptionHandler
+    @ResponseBody
+    public JSONReponse handleException(Exception e) {
+    	JSONReponse response = new JSONReponse();
+    	
+    	response.setStatus(Status.ERRO);
+    	response.setRetorno(e.getMessage());
+    	
+    	return response;
     }
 }

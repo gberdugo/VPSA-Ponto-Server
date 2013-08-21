@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity(name = "funcionario")
 @SequenceGenerator(name = "funcionario_seq", allocationSize = 1, initialValue = 1, sequenceName = "funcionario_seq")
 public class Funcionario {
@@ -21,7 +19,6 @@ public class Funcionario {
 	private Long idVpsaRepresentante;
 	
 	@Column(nullable = false, unique = true)
-	@NotBlank(message = "{messages.funcionario.validacao.nome}")
 	private String nome;
 	
 	@Column(nullable = false, unique = true)

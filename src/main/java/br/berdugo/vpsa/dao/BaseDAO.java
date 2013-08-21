@@ -3,8 +3,7 @@ package br.berdugo.vpsa.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +12,7 @@ import br.berdugo.vpsa.dao.interfaces.IDAO;
 @SuppressWarnings("unchecked")
 public abstract class BaseDAO<T> implements IDAO<T> {
 
-	private static final Log logger = LogFactory.getLog(BaseDAO.class);
+	private static final Logger logger = Logger.getLogger(BaseDAO.class);
 	
 	private Class<T> persistentClass;
 	

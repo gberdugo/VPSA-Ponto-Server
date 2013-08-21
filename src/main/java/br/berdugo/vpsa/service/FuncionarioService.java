@@ -15,6 +15,6 @@ public class FuncionarioService implements IFuncionarioService {
 	
 	@Override
 	public Funcionario cadastrar(Funcionario funcionario) {
-		return dao.save(funcionario);
+			return dao.save(funcionario);
 	}
 }

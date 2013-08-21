@@ -6,7 +6,7 @@ public class JSONReponse {
 
 	private Status status;
 	
-	private Object retorno;
+	private Object retorno;	
 
 	public Status getStatus() {
 		return status;
