@@ -1,8 +1,10 @@
 package br.berdugo.vpsa.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.TransformerUtils;
@@ -16,7 +18,14 @@ public class ValidationException extends Exception {
 	
 	@SuppressWarnings("unchecked")
 	public ValidationException(List<ObjectError> list) {
-		errorMessages = CollectionUtils.collect(list, TransformerUtils.invokerTransformer("getCode"));
+		Collection<String> errorCodes = CollectionUtils.collect(list, TransformerUtils.invokerTransformer("getCode"));
+		ResourceBundle res = ResourceBundle.getBundle("messages");
+		
+		errorMessages = new ArrayList<String>();
+		
+		for (String errorCode : errorCodes) {
+			errorMessages.add(res.getString(errorCode));
+		}
 	}
 	
 	@Override
