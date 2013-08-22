@@ -8,7 +8,7 @@
 	<head>
 	    <meta charset="utf-8">
 	    <title>VPSA Ponto</title>
-	     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<!-- Bootstrap -->
     	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     	<!-- Main -->
@@ -17,6 +17,8 @@
     	<script src="/resources/js/geral/jquery-1.10.2.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="/resources/js/geral/bootstrap.min.js"></script>
+    	<!-- jQuery Validation -->
+    	<script src="/resources/js/geral/jquery.validate.min.js"></script>
     	
     	<script type="text/javascript">
     		$(document).ready(function() {
@@ -32,6 +34,14 @@
     					}
     				});
         		});
+    			
+    			$("#formNovo").validate({
+    				rules: {
+    					field: {
+    						required: true
+    					}
+    				}
+    			});
     		});
     		
     		function novoResult(data) {
@@ -47,8 +57,8 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form" id="formNovo">
-					<input name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" />
-					<input name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" />
+					<input name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" required="required" />
+					<input name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" />
 					
 					<button id="btnCadastrar" class="btn btn-primary" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button> 
 				</form>

@@ -46,6 +46,8 @@ public class FuncionarioController {
     		response.setStatus(Status.OK);
     		response.setRetorno(retorno);
     	} else {
+    		//response.setStatus(Status.ERRO);
+    		//response.setRetorno(result.getAllErrors());
     		throw new ValidationException(result.getAllErrors());
     	}
 
