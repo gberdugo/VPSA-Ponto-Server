@@ -10,9 +10,9 @@
 	    <title>VPSA Ponto</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<!-- Bootstrap -->
-    	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="/resources/css/geral/bootstrap.min.css" rel="stylesheet">
     	<!-- Main -->
-    	<link href="/resources/css/main.css" rel="stylesheet">
+    	<link href="/resources/css/geral/main.css" rel="stylesheet">
     	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="/resources/js/geral/jquery-1.10.2.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -28,23 +28,30 @@
     					type: "POST", 
     					cache: false,	 
     					data:$("#formNovo").serialize(),
-    					success: novoResult, 
-    					error: function(e) {
-    						alert('Error: ' + e);
-    					}
+    					success: successHandler, 
+    					error: errorHandler
     				});
         		});
     			
     			$("#formNovo").validate({
     				rules: {
-    					field: {
-    						required: true
-    					}
+    					nome: "required",
+    					codigoRFID: "required"
+    				},
+    				messages: {
+    					nome: "<spring:message code='funcionario.validacao.nome' javaScriptEscape='true' />",
+    					codigoRFID: "<spring:message code='funcionario.validacao.rfid' javaScriptEscape='true' />"
     				}
     			});
     		});
     		
-    		function novoResult(data) {
+    		function successHandler(data) {
+    			if (data.status == '') {
+    				alert(strings['funcionario.novo.sucesso']);	
+    			}
+    		}
+    		
+    		function errorHandler(data) {
     			alert(data);
     		}
     	</script>
@@ -57,8 +64,8 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form" id="formNovo">
-					<input name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" required="required" />
-					<input name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" />
+					<input id="nome" name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" required="required" />
+					<input id="codigoRFID" name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" />
 					
 					<button id="btnCadastrar" class="btn btn-primary" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button> 
 				</form>

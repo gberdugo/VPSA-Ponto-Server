@@ -3,7 +3,7 @@ body {
 }
 
 .form {
-	max-width: 330px;
+	max-width: 670px;
 }
 
 .form .form-control {
@@ -28,4 +28,10 @@ body {
 
 .form button {
 	margin-top: 5px;
+}
+
+.form label.error {
+	margin-left: 10px;
+	width: auto;
+	display: inline;
 }
