@@ -1,5 +1,7 @@
 package br.berdugo.vpsa.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,10 @@ public class FuncionarioService implements IFuncionarioService {
 	@Override
 	public Funcionario cadastrar(Funcionario funcionario) {
 			return dao.save(funcionario);
+	}
+	
+	@Override
+	public List<Funcionario> listar() {
+		return dao.listAll();
 	}
 }

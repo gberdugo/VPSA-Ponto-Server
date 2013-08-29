@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.berdugo.vpsa.adapter.funcionario.FuncionarioAdapter;
 import br.berdugo.vpsa.enums.Status;
 import br.berdugo.vpsa.model.Funcionario;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
+import br.berdugo.vpsa.utils.I18N;
 import br.berdugo.vpsa.utils.JSONReponse;
 import br.berdugo.vpsa.utils.ValidationException;
 import br.berdugo.vpsa.validator.funcionario.FuncionarioValidator;
@@ -29,6 +31,9 @@ public class FuncionarioController {
 
     @Autowired
     private IFuncionarioService service;
+    
+    @Autowired
+    private FuncionarioAdapter adapter;
     
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -45,9 +50,8 @@ public class FuncionarioController {
     		Funcionario retorno = service.cadastrar(funcionario);
     		response.setStatus(Status.OK);
     		response.setRetorno(retorno);
+    		response.setMensagem(I18N.getString("funcionario.novo.sucesso"));
     	} else {
-    		//response.setStatus(Status.ERRO);
-    		//response.setRetorno(result.getAllErrors());
     		throw new ValidationException(result.getAllErrors());
     	}
 
@@ -59,13 +63,30 @@ public class FuncionarioController {
         return "funcionario/novo";
     }
     
+    @ResponseBody
+    @RequestMapping(value = "/listar", method = RequestMethod.POST)
+    public JSONReponse funcionarios() throws Exception {
+    	JSONReponse response = new JSONReponse();
+    	
+    	response.setStatus(Status.OK);
+    	//response.setRetorno(adapter.getJSON(service.listar()));
+    	response.setRetorno(service.listar());
+    	return response;
+    }
+    
+    @RequestMapping(value = "/listar", method = RequestMethod.GET)
+    public String listFuncionarios() {
+    	return "funcionario/listar";
+    }
+    
     @ExceptionHandler
     @ResponseBody
     public JSONReponse handleException(Exception e) {
     	JSONReponse response = new JSONReponse();
     	
     	response.setStatus(Status.ERRO);
-    	response.setRetorno(e.getMessage());
+    	response.setRetorno(e);
+    	response.setMensagem(e.getMessage());
     	
     	return response;
     }
