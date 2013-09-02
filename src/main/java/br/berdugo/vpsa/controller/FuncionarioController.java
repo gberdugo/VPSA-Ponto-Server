@@ -11,8 +11,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.berdugo.vpsa.adapter.funcionario.FuncionarioAdapter;
@@ -58,21 +61,53 @@ public class FuncionarioController {
         return response;
     }
     
+    @ResponseBody
+    @RequestMapping(value = "/listar", method = RequestMethod.POST)
+    public JSONReponse funcionarios(@RequestParam(value = "searchField", required = false, defaultValue = "") String page) throws Exception {
+    	JSONReponse response = new JSONReponse();
+    	
+    	response.setStatus(Status.OK);
+    	response.setRetorno(service.listar());
+    	return response;
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/editar", method = RequestMethod.POST)
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public JSONReponse editar(@Valid @ModelAttribute("funcionario") Funcionario funcionario, BindingResult result) throws Exception {
+    	JSONReponse response = new JSONReponse();
+		
+    	if (!result.hasErrors()) {
+    		Funcionario retorno = service.cadastrar(funcionario);
+    		response.setStatus(Status.OK);
+    		response.setRetorno(retorno);
+    		response.setMensagem(I18N.getString("funcionario.edicao.sucesso"));
+    	} else {
+    		throw new ValidationException(result.getAllErrors());
+    	}
+
+        return response;
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/remover/{id}", method = RequestMethod.POST)
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public JSONReponse remover(@PathVariable("id") Long idFuncionario) throws Exception {
+    	JSONReponse response = new JSONReponse();
+		
+    	service.remover(idFuncionario);
+    	response.setStatus(Status.OK);
+    	response.setRetorno(null);
+    	response.setMensagem(I18N.getString("funcionario.remocao.sucesso"));
+    	
+        return response;
+    }
+    
     @RequestMapping(value = "/novo", method = RequestMethod.GET)
     public String novo() {
         return "funcionario/novo";
     }
     
-    @ResponseBody
-    @RequestMapping(value = "/listar", method = RequestMethod.POST)
-    public JSONReponse funcionarios() throws Exception {
-    	JSONReponse response = new JSONReponse();
-    	
-    	response.setStatus(Status.OK);
-    	//response.setRetorno(adapter.getJSON(service.listar()));
-    	response.setRetorno(service.listar());
-    	return response;
-    }
     
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public String listFuncionarios() {

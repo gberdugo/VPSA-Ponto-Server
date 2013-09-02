@@ -8,5 +8,9 @@ public interface IFuncionarioService {
 
 	public Funcionario cadastrar(Funcionario funcionario);
 	
+	public Funcionario editar(Funcionario funcionario);
+	
 	public List<Funcionario> listar();
+
+	public void remover(Long idFuncionario);
 }

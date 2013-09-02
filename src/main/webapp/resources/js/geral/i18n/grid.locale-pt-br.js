@@ -70,7 +70,7 @@ $.extend($.jgrid,{
 	    searchtext: " ",
 	    searchtitle: "Procurar registros",
 	    refreshtext: "",
-	    refreshtitle: "Recarregando tabela",
+	    refreshtitle: "Recarregar tabela",
 	    alertcap: "Aviso",
 	    alerttext: "Por favor, selecione um registro",
 		viewtext: "",

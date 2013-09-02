@@ -27,44 +27,82 @@
     	<script type="text/javascript">
     		$(document).ready(function() {
     			$("#listFuncionario").jqGrid({
-    				jsonReader : {
-    				      root:"retorno",
-    				},
     				height: 'auto',
     				autowidth: true,
-    				datatype: function() {
+    				datatype: function(postdata) {
     					$.ajax({ 
 	    					url: "/funcionario/listar", 
 	    					type: "POST",
+	    					data: postdata,
 	    					cache: false,
 	    					success: function(response) {
 	    						if (response.status == "OK") {
-	    							var thegrid = $("#listFuncionario")[0];
-	    			                thegrid.addJSONData(response.retorno);
+	    							$("#listFuncionario")[0].addJSONData(response.retorno);
 	    						}
 	    					}
 	    				});
     				},
     				colNames: ['<spring:message code="funcionario.lista.table.id"/>',
+    				           '<spring:message code="funcionario.lista.table.representante"/>',
     				           '<spring:message code="funcionario.lista.table.nome"/>',
     				           '<spring:message code="funcionario.lista.table.cartao"/>'
     				],
     				colModel: [
-    				     		{name:'id',index:'id', width:55},
-    				     		{name:'nome',index:'nome', width:200},
-    				     		{name:'codigoRFID',index:'codigoRFID', width:150}
+    				     		{name: 'id', index: 'id', width: 55, sortable: true, sorttype: 'int', key: true},
+    				     		{name: 'idVpsaRepresentante', index: 'idVpsaRepresentante', hidden: true},
+    				     		{name: 'nome', index: 'nome', width: 200, sortable: true, editable: true, editrules: {required: true}},
+    				     		{name: 'codigoRFID', index: 'codigoRFID', width: 150, sortable: true, editable: true, editrules: {required: true}}
 					],
+					altRows: true,
 					rowNum: 10,
     				rowList: [10,20,30],
     				pager: '#pagerFuncionario',
+    				gridview: true,
+    				ignoreCase: true,
     				sortname: 'id',
     				viewrecords: true,
     				sortorder: "desc",
-    				sortable: true,
-    				caption: ""
+    				editurl: '/funcionario/editar'
 				});
     			
-    			$("#listFuncionario").jqGrid('navGrid','#pagerFuncionario',{edit:true,add:false,del:true});
+    			$("#listFuncionario").jqGrid('navGrid','#pagerFuncionario', 
+    				{edit: false, add: false, del: true, view: true, search: true},
+    				{},
+    				{},
+    				{
+    					onclickSubmit: function(params, postdata) {
+    						params.url = '/funcionario/remover/' + postdata;
+    					}
+    				}
+    			).navButtonAdd("#pagerFuncionario", { // custom add button
+    				caption: "",  
+    				buttonicon: "ui-icon-plus", 
+    				onClickButton: function() { 
+    					window.location.href = "/funcionario/novo"; 
+    				},
+    				position: "first",
+    				title: $.jgrid.nav.addtitle
+    			});
+    			
+    			$("#listFuncionario").jqGrid('inlineNav','#pagerFuncionario', {
+    				edit: true,
+    				add: false,
+    				cancel: true,
+    				editParams: {
+    					keys: false,
+    					oneditfunc: null,
+    					successfunc: function(val) {
+    						if (val.responseJSON.status == "OK") {
+    							alert(val.responseJSON.mensagem);
+    						}
+    					}
+    				}
+    			});
+    			
+    			$("#listFuncionario").jqGrid('filterToolbar', {
+    				stringResult: true, 
+    				searchOnEnter: false
+    			});
     		});
     	</script>
 	</head>

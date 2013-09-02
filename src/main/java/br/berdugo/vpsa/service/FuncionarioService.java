@@ -24,4 +24,14 @@ public class FuncionarioService implements IFuncionarioService {
 	public List<Funcionario> listar() {
 		return dao.listAll();
 	}
+	
+	@Override
+	public Funcionario editar(Funcionario funcionario) {
+		return dao.save(funcionario);
+	}
+	
+	@Override
+	public void remover(Long idFuncionario) {
+		dao.delete(idFuncionario);
+	}
 }
