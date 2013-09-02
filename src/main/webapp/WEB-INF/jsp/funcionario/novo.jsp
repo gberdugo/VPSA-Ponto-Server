@@ -6,13 +6,8 @@
 
 <html lang="pt">
 	<head>
-	    <meta charset="utf-8">
-	    <title>VPSA Ponto</title>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<!-- Bootstrap -->
-    	<link href="/resources/css/geral/bootstrap.min.css" rel="stylesheet">
-    	<!-- Main -->
-    	<link href="/resources/css/geral/main.css" rel="stylesheet">
+	    <jsp:include page="../base/cabecalho.jsp" />
+	    
     	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="/resources/js/geral/jquery-1.10.2.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -52,6 +47,38 @@
 	</head>
 
 	<body>
+		<div class="container">
+			<form class="bs-example form-horizontal">
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="inputEmail1">Email</label>
+					<div class="col-lg-10">
+						<input type="email" placeholder="Email" id="inputEmail1"
+							class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="inputPassword1">Password</label>
+					<div class="col-lg-10">
+						<input type="password" placeholder="Password" id="inputPassword1"
+							class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<div class="checkbox">
+							<label> <input type="checkbox"> Remember me
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button class="btn btn-default" type="submit">Sign in</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><spring:message code="funcionario.novo.header"/></h3>
