@@ -6,7 +6,18 @@ body {
   border-top: 1px solid #eee;
   margin-top: 40px;
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
+}
+
+.navbar-footer ul li {
+	float: left;
+	display: block;
+	position: relative;
+	margin-left: 20px;
+}
+
+.nota {
+	text-align: center;
 }
 
 /* Main marketing message and sign up button */

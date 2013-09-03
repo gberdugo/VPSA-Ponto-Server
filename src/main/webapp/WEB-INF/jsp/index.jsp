@@ -7,17 +7,6 @@
 <html lang="pt">
   <head>
     <jsp:include page="base/cabecalho.jsp" />
-    
-   	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   	<script src="/resources/js/geral/jquery-1.10.2.min.js"></script>
-   	<!-- Include all compiled plugins (below), or include individual files as needed -->
-   	<script src="/resources/js/geral/bootstrap.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -36,15 +25,15 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-4">
-          <h2>Heading</h2>
+          <h2><i class="icon-exchange"></i> 1. Acesse,</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
+          <h2><i class="icon-calendar-empty"></i> 2. bata o ponto ...</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
        </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
+          <h2><i class="icon-certificate"></i> 3. ... e pronto!</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
         </div>
       </div>
@@ -54,11 +43,16 @@
     </div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   	<script src="/resources/js/geral/jquery-1.10.2.min.js"></script>
+   	<!-- Include all compiled plugins (below), or include individual files as needed -->
+   	<script src="/resources/js/geral/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    
   </body>
 </html>
-
-<!-- TESTE -->
-
