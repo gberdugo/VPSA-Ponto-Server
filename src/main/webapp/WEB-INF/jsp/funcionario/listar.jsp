@@ -22,40 +22,7 @@
 		
 		<script type="text/javascript">
 	   		$(document).ready(function() {
-  				buscar();
-	   		});
-	   		
-	   		function buscar() {
-	   			$.ajax({ 
-  					url: "/funcionario/listar", 
-  					type: "POST", 
-  					cache: false,	 
-  					success: function(response) {
-  						if (response.status == "OK") {
-  							$("#tableFuncionario").html("");
-  							var funcionarios = response.retorno;
-  							
-  							$.each(funcionarios, function(key, funcionario) {
-  								var row = "";
-  								row += "<tr>";
-  								row += "<td>" + funcionario.id + "</td>";
-  								row += "<td>" + funcionario.nome + "</td>";
-  								row += "<td>" + funcionario.codigoRFID + "</td>";
-  								row += "<td><span class='icon-edit' onclick='editar(" + funcionario.id + ")' /></td>";
-  								row += "<td><span class='icon-remove' onclick='remover(" + funcionario.id + ")' /></td>";
-  								row += "</tr>";
-  								
-  								$("#tableFuncionario").append(row);
-  							});
-  						}
-  						initTable();
-  					}, 
-  					error: errorHandler
-  				});
-	   		}
-	   		
-	   		function initTable() {
-				$.extend($.tablesorter.themes.bootstrap, {
+	   			$.extend($.tablesorter.themes.bootstrap, {
 					table      : 'table table-bordered',
 					header     : 'bootstrap-header', // give the header a gradient background
 					footerRow  : '',
@@ -80,13 +47,8 @@
 						zebra : ["even", "odd"],
 						filter_reset : ".reset"
 					}
-				}).tablesorterPager({
-					container: $(".pager"),
-					cssGoto  : ".pagenum",
-					removeRows: false,
-					output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
 				});
-	   		}
+	   		});
 	   		
 	   		function remover(id) {
 	   			$.ajax({ 
@@ -99,7 +61,11 @@
 	   		}
 	   		
 	   		function editar(id) {
-	   			alert(id);
+	   			$.ajax({ 
+  					url: "/funcionario/editar/" + id, 
+  					type: "GET",
+  					cache: false
+  				});
 	   		}
 	   	</script>
 	</head>
@@ -123,7 +89,21 @@
 								<th class="filter-false sorter-false" />
 							</tr>
 						</thead>
-						<tbody id="tableFuncionario" />
+						<tbody>
+							<c:forEach items="${listFuncionarios}" var="funcionario">
+								<tr>
+									<td>${funcionario.id}</td>
+  									<td>${funcionario.nome}</td>
+  									<td>${funcionario.codigoRFID}</td>
+  									<td>
+  										<a class="icon-edit link-icon" href="/funcionario/editar/${funcionario.id}" /></a>
+  									</td>
+  									<td>
+  										<span class="icon-remove" onclick="remover(${funcionario.id})"></span>
+  									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 	

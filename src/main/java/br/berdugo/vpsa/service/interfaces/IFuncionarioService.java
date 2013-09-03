@@ -13,4 +13,6 @@ public interface IFuncionarioService {
 	public List<Funcionario> listar();
 
 	public void remover(Long idFuncionario);
+	
+	public Funcionario buscarPorId(Long idFuncionario);
 }

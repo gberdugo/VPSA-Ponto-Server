@@ -34,4 +34,9 @@ public class FuncionarioService implements IFuncionarioService {
 	public void remover(Long idFuncionario) {
 		dao.delete(idFuncionario);
 	}
+	
+	@Override
+	public Funcionario buscarPorId(Long idFuncionario) {
+		return dao.findById(idFuncionario);
+	}
 }

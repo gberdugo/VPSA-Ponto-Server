@@ -5,6 +5,15 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     id="VPSA-Ponto" version="3.0">
     <display-name>VPSA-Ponto</display-name>
+    
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:database.xml</param-value>
+	</context-param>
 
     <servlet>
         <servlet-name>vpsa-ponto</servlet-name>
@@ -20,7 +29,7 @@
         <servlet-name>vpsa-ponto</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!--
+    
     <filter>
 		<filter-name>openSessionFactory</filter-name>
 		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
@@ -34,5 +43,4 @@
 		<filter-name>openSessionFactory</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	-->
 </web-app>

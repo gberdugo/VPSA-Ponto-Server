@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,7 +37,7 @@ public class FuncionarioController {
     @Autowired
     private FuncionarioAdapter adapter;
     
-    @InitBinder
+    @InitBinder("funcionario")
     protected void initBinder(WebDataBinder binder) {
     	binder.setValidator(new FuncionarioValidator());
     }
@@ -52,34 +53,6 @@ public class FuncionarioController {
     		response.setStatus(Status.OK);
     		response.setRetorno(retorno);
     		response.setMensagem(I18N.getString("funcionario.novo.sucesso"));
-    	} else {
-    		throw new ValidationException(result.getAllErrors());
-    	}
-
-        return response;
-    }
-    
-    @ResponseBody
-    @RequestMapping(value = "/listar", method = RequestMethod.POST)
-    public JSONReponse funcionarios() throws Exception {
-    	JSONReponse response = new JSONReponse();
-    	
-    	response.setStatus(Status.OK);
-    	response.setRetorno(service.listar());
-    	return response;
-    }
-    
-    @ResponseBody
-    @RequestMapping(value = "/editar", method = RequestMethod.POST)
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public JSONReponse editar(@Valid @ModelAttribute("funcionario") Funcionario funcionario, BindingResult result) throws Exception {
-    	JSONReponse response = new JSONReponse();
-		
-    	if (!result.hasErrors()) {
-    		Funcionario retorno = service.cadastrar(funcionario);
-    		response.setStatus(Status.OK);
-    		response.setRetorno(retorno);
-    		response.setMensagem(I18N.getString("funcionario.edicao.sucesso"));
     	} else {
     		throw new ValidationException(result.getAllErrors());
     	}
@@ -106,10 +79,18 @@ public class FuncionarioController {
         return "funcionario/novo";
     }
     
-    
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
-    public String listFuncionarios() {
+    public String listFuncionarios(ModelMap model) {
+    	model.addAttribute("listFuncionarios", service.listar());
+    	
     	return "funcionario/listar";
+    }
+    
+    @RequestMapping(value = "/editar/{id}", method = RequestMethod.GET)
+    public String editar(@PathVariable("id") Long idFuncionario, ModelMap model) {
+    	model.addAttribute("funcionarioEditado", service.buscarPorId(idFuncionario));
+    	
+        return "/funcionario/novo";
     }
     
     @ExceptionHandler

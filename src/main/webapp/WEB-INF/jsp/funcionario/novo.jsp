@@ -85,11 +85,12 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form" id="formNovo">
+					<input id="id" name="id" type="hidden" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.id}</c:if>" />
 					<div>
-						<input id="nome" name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" required="required" />
+						<input id="nome" name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.nome}</c:if>" />
 					</div>
 					<div>
-						<input id="codigoRFID" name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" />
+						<input id="codigoRFID" name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.codigoRFID}</c:if>" />
 					</div>
 					<div>					
 						<button id="btnCadastrar" class="btn btn-primary" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button>
