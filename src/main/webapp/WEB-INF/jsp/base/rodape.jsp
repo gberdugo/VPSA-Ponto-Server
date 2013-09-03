@@ -2,5 +2,11 @@
 
 <!-- Site footer -->
 <div class="footer">
-	<p>&copy; VPSA Ponto 2013 - Todos os direitos reservados &reg;</p>
+	<div class="navbar-right navbar-footer">
+		<ul>
+			<li><a href="#">Contato</a></li>
+		</ul>
+	</div>
+	<p class="nota">&copy; VPSA Ponto 2013- Todos os direitos reservados &reg;</p>
+
 </div>
