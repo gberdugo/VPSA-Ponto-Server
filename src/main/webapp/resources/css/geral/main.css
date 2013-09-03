@@ -117,14 +117,9 @@ body {
 	max-width: 670px;
 }
 
-.form .form-control {
-	position: relative;
-	font-size: 16px;
-	height: auto;
-	padding: 10px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+.form-horizontal .form-control {
+	width: 50%;
+	display: inline;
 }
 
 .form .form-control:focus {
@@ -142,18 +137,18 @@ body {
 }
 
 label.valid {
-  	width: 24px;
-  	height: 24px;
-  	background: url(img/valid.png) center center no-repeat;
+	width: 24px;
+	height: 24px;
+	background: url(/resources/css/geral/img/valid.png) center center no-repeat;
 	display: inline-block;
-  	text-indent: -9999px;
+	text-indent: -9999px;
 }
 
 label.error {
 	font-weight: bold;
-  	color: red;
-  	padding: 2px;
-  	margin-top: 2px;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
 }
 
 input[type="search"].disabled {

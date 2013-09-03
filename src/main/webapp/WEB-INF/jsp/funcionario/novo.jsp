@@ -27,7 +27,13 @@
     				messages: {
     					nome: "<spring:message code='funcionario.validacao.nome' javaScriptEscape='true' />",
     					codigoRFID: "<spring:message code='funcionario.validacao.rfid' javaScriptEscape='true' />"
-    				}
+    				},
+					highlight: function(element) {
+						$(element).closest('.form-group').removeClass('success').addClass('error');
+					},
+					success: function(element) {
+						element.text('OK!').addClass('valid').closest('.form-group').removeClass('error').addClass('success');
+					}
     			});
     			
     			$("#btnCadastrar").click(function() {
@@ -48,55 +54,31 @@
 
 	<body>
 		<div class="container">
-			<form class="bs-example form-horizontal">
+			<jsp:include page="../base/menu-principal.jsp" />
+			
+			<form class="form-horizontal" id="formNovo">
+				<input id="id" name="id" type="hidden" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.id}</c:if>" />
+				
 				<div class="form-group">
-					<label class="col-lg-2 control-label" for="inputEmail1">Email</label>
+					<label class="col-lg-2 control-label" for="nome"><spring:message code='funcionario.novo.nome' /></label>
 					<div class="col-lg-10">
-						<input type="email" placeholder="Email" id="inputEmail1"
-							class="form-control">
+						<input type="text" placeholder="<spring:message code='funcionario.novo.nome' />" id="nome" name="nome" class="form-control" autofocus="autofocus" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.nome}</c:if>" />
 					</div>
 				</div>
+				
 				<div class="form-group">
-					<label class="col-lg-2 control-label" for="inputPassword1">Password</label>
+					<label class="col-lg-2 control-label" for="nome"><spring:message code='funcionario.novo.nrocartao' /></label>
 					<div class="col-lg-10">
-						<input type="password" placeholder="Password" id="inputPassword1"
-							class="form-control">
+						<input id="codigoRFID" name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.codigoRFID}</c:if>" />
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<div class="checkbox">
-							<label> <input type="checkbox"> Remember me
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10">
-						<button class="btn btn-default" type="submit">Sign in</button>
+						<button id="btnCadastrar" class="btn btn-default" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button>
 					</div>
 				</div>
 			</form>
-		</div>
-		
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title"><spring:message code="funcionario.novo.header"/></h3>
-			</div>
-			<div class="panel-body">
-				<form action="" class="form" id="formNovo">
-					<input id="id" name="id" type="hidden" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.id}</c:if>" />
-					<div>
-						<input id="nome" name="nome" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nome' />" autofocus="autofocus" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.nome}</c:if>" />
-					</div>
-					<div>
-						<input id="codigoRFID" name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.codigoRFID}</c:if>" />
-					</div>
-					<div>					
-						<button id="btnCadastrar" class="btn btn-primary" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button>
-					</div> 
-				</form>
-			</div>
 		</div>
 	</body>
 </html>

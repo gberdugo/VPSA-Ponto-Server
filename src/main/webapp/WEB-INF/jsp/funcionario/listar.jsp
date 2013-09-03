@@ -119,12 +119,9 @@
 						</ul>
 					</div>
 				</div>
-	
 			</div>
 			
 			<jsp:include page="../base/rodape.jsp" />
-			
 		</div> <!-- /container -->
-		
 	</body>
 </html>
