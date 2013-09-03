@@ -8,20 +8,31 @@
 	<head>
 		<jsp:include page="../base/cabecalho.jsp" />
 		
+		<!-- TableSorter -->
+		<link rel="stylesheet" href="/resources/css/geral/theme.bootstrap.css">
+		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="/resources/js/geral/jquery-1.10.2.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="/resources/js/geral/bootstrap.min.js"></script>
+		<script src="/resources/js/geral/jquery.tablesorter.min.js"></script>
+		<script src="/resources/js/geral/jquery.tablesorter.widgets.js"></script>
+		<!-- Geral -->
 		<script src="/resources/js/geral/geral.js"></script>
 		
 		<script type="text/javascript">
 	   		$(document).ready(function() {
-  				$.ajax({ 
+  				buscar();
+	   		});
+	   		
+	   		function buscar() {
+	   			$.ajax({ 
   					url: "/funcionario/listar", 
   					type: "POST", 
   					cache: false,	 
   					success: function(response) {
   						if (response.status == "OK") {
+  							$("#tableFuncionario").html("");
   							var funcionarios = response.retorno;
   							
   							$.each(funcionarios, function(key, funcionario) {
@@ -30,17 +41,66 @@
   								row += "<td>" + funcionario.id + "</td>";
   								row += "<td>" + funcionario.nome + "</td>";
   								row += "<td>" + funcionario.codigoRFID + "</td>";
-  								row += "<td><form action='delete/" + funcionario.id + "' method='post'><button type='submit' class='btn btn-danger btn-mini'><span class='glyphicon glyphicon-remove-circle' /></button></form></td>";
-  								row += "<td>" + funcionario.id + "</td>";
+  								row += "<td><span class='icon-edit' onclick='editar(" + funcionario.id + ")' /></td>";
+  								row += "<td><span class='icon-remove' onclick='remover(" + funcionario.id + ")' /></td>";
   								row += "</tr>";
   								
   								$("#tableFuncionario").append(row);
   							});
   						}
+  						initTable();
   					}, 
   					error: errorHandler
   				});
-	   		});
+	   		}
+	   		
+	   		function initTable() {
+				$.extend($.tablesorter.themes.bootstrap, {
+					table      : 'table table-bordered',
+					header     : 'bootstrap-header', // give the header a gradient background
+					footerRow  : '',
+					footerCells: '',
+					icons      : '', // add "icon-white" to make them white; this icon class is added to the <i> in the header
+					sortNone   : 'bootstrap-icon-unsorted',
+					sortAsc    : 'icon-chevron-up',
+					sortDesc   : 'icon-chevron-down',
+					active     : '', // applied when column is sorted
+					hover      : '', // use custom css here - bootstrap class may not override it
+					filterRow  : '', // filter row class
+					even       : '', // odd row zebra striping
+					odd        : ''  // even row zebra striping
+				});
+
+				$("table").tablesorter({
+					theme : "bootstrap",
+					widthFixed: true,
+					headerTemplate : '{content} {icon}',
+					widgets : [ "uitheme", "filter", "zebra" ],
+					widgetOptions : {
+						zebra : ["even", "odd"],
+						filter_reset : ".reset"
+					}
+				}).tablesorterPager({
+					container: $(".pager"),
+					cssGoto  : ".pagenum",
+					removeRows: false,
+					output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
+				});
+	   		}
+	   		
+	   		function remover(id) {
+	   			$.ajax({ 
+  					url: "/funcionario/remover/" + id, 
+  					type: "POST",
+  					cache: false,
+  					success: buscar,
+  					error: errorHandler
+  				});
+	   		}
+	   		
+	   		function editar(id) {
+	   			alert(id);
+	   		}
 	   	</script>
 	</head>
 
@@ -53,15 +113,14 @@
 					<h3 class="panel-title">
 						<spring:message code="funcionario.lista.header" />
 					</h3>
-		<span class="glyphicon glyphicon-volume-off"></span> Te
-					<table class="table table-hover">
+					<table class="tablesorter">
 						<thead>
 							<tr>
 								<th><spring:message code="funcionario.lista.table.id" /></th>
 								<th><spring:message code="funcionario.lista.table.nome" /></th>
 								<th><spring:message code="funcionario.lista.table.cartao" /></th>
-								<th />
-								<th />
+								<th class="filter-false sorter-false" />
+								<th class="filter-false sorter-false" />
 							</tr>
 						</thead>
 						<tbody id="tableFuncionario" />

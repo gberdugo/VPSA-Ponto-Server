@@ -92,7 +92,15 @@ body {
 	margin-top: 25px;
 }
 
+.panel-title {
+	margin-bottom: 10px; 
+}
+
 /*BERDUGO CSS*/
+
+.icon-edit, .icon-remove {
+	cursor: pointer;
+}
 
 .form {
 	max-width: 670px;

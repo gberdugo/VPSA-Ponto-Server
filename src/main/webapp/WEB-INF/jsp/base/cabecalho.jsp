@@ -12,5 +12,5 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/bootstrap.min.css">
 <!-- Main -->
 <link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/main.css">
-<!-- Jquery UI -->
-<link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/jquery-ui-1.10.3.custom.min.css">
+<!-- Icons -->
+<link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/font-awesome.min.css">
