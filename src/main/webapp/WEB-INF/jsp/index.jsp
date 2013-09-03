@@ -23,7 +23,7 @@
   <body>
 
     <div class="container">
-
+    
 	<jsp:include page="base/menu-principal.jsp" />
 
       <!-- Jumbotron -->
@@ -38,28 +38,18 @@
         <div class="col-lg-4">
           <h2>Heading</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p>
-			<a href="/funcionario/novo" title="<spring:message code='menu.novo.funcionario' htmlEscape='true'/>" class="btn btn-primary"><spring:message code='menu.novo.funcionario' /></a>
-          </p>
         </div>
         <div class="col-lg-4">
           <h2>Heading</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p>
-			<a href="/funcionario/listar" title="<spring:message code='menu.listar.funcionario' htmlEscape='true'/>" class="btn btn-primary"><spring:message code='menu.listar.funcionario' /></a>
-          </p>
        </div>
         <div class="col-lg-4">
           <h2>Heading</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
         </div>
       </div>
 
-      <!-- Site footer -->
-      <div class="footer">
-        <p>&copy; Company 2013</p>
-      </div>
+      <jsp:include page="base/rodape.jsp" />
 
     </div> <!-- /container -->
 
