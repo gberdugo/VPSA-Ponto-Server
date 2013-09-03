@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.berdugo.vpsa.adapter.funcionario.FuncionarioAdapter;
@@ -63,7 +61,7 @@ public class FuncionarioController {
     
     @ResponseBody
     @RequestMapping(value = "/listar", method = RequestMethod.POST)
-    public JSONReponse funcionarios(@RequestParam(value = "searchField", required = false, defaultValue = "") String page) throws Exception {
+    public JSONReponse funcionarios() throws Exception {
     	JSONReponse response = new JSONReponse();
     	
     	response.setStatus(Status.OK);
