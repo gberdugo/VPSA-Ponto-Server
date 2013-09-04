@@ -59,14 +59,6 @@
   					error: errorHandler
   				});
 	   		}
-	   		
-	   		function editar(id) {
-	   			$.ajax({ 
-  					url: "/funcionario/editar/" + id, 
-  					type: "GET",
-  					cache: false
-  				});
-	   		}
 	   	</script>
 	</head>
 

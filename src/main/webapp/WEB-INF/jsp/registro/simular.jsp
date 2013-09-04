@@ -55,30 +55,29 @@
 	<body>
 		<div class="container">
 			<jsp:include page="../base/menu-principal.jsp" />
+
+			<div class="row row-offcanvas row-offcanvas-right main-list">
+				<div class="col-xs-12 col-sm-9">
+					<h3 class="panel-title">
+						<spring:message code="entrada.simular.header" />
+					</h3>
+					<form class="form-horizontal" id="formNovo">
+						<div class="form-group">
+							<label class="col-lg-2 control-label" for="comboFuncionario"><spring:message code='entrada.simular.funcionario' />:</label>
+							<div class="col-lg-10">
+								<select class="form-control" id="comboFuncionario">
+									<option id="0" value="0">Selecione</option>
+									<c:forEach items="${funcionarios}" var="funcionario">
+										<option id="${funcionario.id}" value="${funcionario.id}">${funcionario.nome}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 			
-			<form class="form-horizontal" id="formNovo">
-				<input id="id" name="id" type="hidden" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.id}</c:if>" />
-				
-				<div class="form-group">
-					<label class="col-lg-2 control-label" for="nome"><spring:message code='funcionario.novo.nome' />:</label>
-					<div class="col-lg-10">
-						<input type="text" placeholder="<spring:message code='funcionario.novo.nome' />" id="nome" name="nome" class="form-control" autofocus="autofocus" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.nome}</c:if>" />
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-lg-2 control-label" for="nome"><spring:message code='funcionario.novo.nrocartao' />:</label>
-					<div class="col-lg-10">
-						<input id="codigoRFID" name="codigoRFID" type="text" class="form-control" placeholder="<spring:message code='funcionario.novo.nrocartao' />" required="required" value="<c:if test='${not empty funcionarioEditado}'>${funcionarioEditado.codigoRFID}</c:if>" />
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10">
-						<button id="btnCadastrar" class="btn btn-default" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button>
-					</div>
-				</div>
-			</form>
-		</div>
+			<jsp:include page="../base/rodape.jsp" />
+		</div> <!-- /container -->
 	</body>
 </html>

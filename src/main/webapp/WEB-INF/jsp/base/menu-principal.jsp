@@ -22,6 +22,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="/funcionario/listar" title="Funcionários">Funcionários</a></li>
 					<li><a href="#">Relatórios</a></li>
+					<li><a href="/registro/simular">Simular Entrada</a></li>
 					<li class="divider"></li>
 					<li class="dropdown-header">OPÇÕES</li>
 					<li><a href="#">Sair</a></li>
