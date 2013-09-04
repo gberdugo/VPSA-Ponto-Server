@@ -14,3 +14,5 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/main.css">
 <!-- Icons -->
 <link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/font-awesome.min.css">
+<!-- DateTimePicker -->
+<link rel="stylesheet" type="text/css" media="screen" href="/resources/css/geral/datetimepicker.css">

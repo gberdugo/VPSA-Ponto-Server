@@ -16,33 +16,45 @@
     	<script src="/resources/js/geral/jquery.validate.min.js"></script>
     	<!-- Geral -->
     	<script src="/resources/js/geral/geral.js"></script>
+    	<!-- DateTimePicker -->
+    	<script src="/resources/js/geral/bootstrap-datetimepicker.min.js"></script>
     	
     	<script type="text/javascript">
     		$(document).ready(function() {
-    			$("#formNovo").validate({
+    			 $(".form_datetime").datetimepicker({
+    				 format: "dd/mm/yyyy - hh:ii:ss",
+    				 autoclose: true,
+    				 todayHighlight: true
+    			 });
+    			 
+    			$("#formSimular").validate({
     				rules: {
-    					nome: "required",
-    					codigoRFID: "required"
+    					funcionario: "required",
+    					dataHora: "required"
     				},
     				messages: {
-    					nome: "<spring:message code='funcionario.validacao.nome' javaScriptEscape='true' />",
-    					codigoRFID: "<spring:message code='funcionario.validacao.rfid' javaScriptEscape='true' />"
+    					funcionario: "<spring:message code='entrada.validacao.funcionario' javaScriptEscape='true' />",
+    					dataHora: "<spring:message code='entrada.validacao.horario' javaScriptEscape='true' />"
     				},
 					highlight: function(element) {
 						$(element).closest('.form-group').removeClass('success').addClass('error');
 					},
 					success: function(element) {
 						element.text('OK!').addClass('valid').closest('.form-group').removeClass('error').addClass('success');
+					},
+					errorPlacement: function(error, element) {
+						error.appendTo(element.parent("div"));
 					}
     			});
     			
     			$("#btnCadastrar").click(function() {
-    				if ($("#formNovo").valid()) {
+    				if ($("#formSimular").valid()) {
+    					alert($("#formSimular").serialize());
 	    				$.ajax({ 
-	    					url: "/funcionario/novo", 
+	    					url: "/registro/simular", 
 	    					type: "POST", 
 	    					cache: false,	 
-	    					data:$("#formNovo").serialize(),
+	    					data:$("#formSimular").serialize(),
 	    					success: successHandler, 
 	    					error: errorHandler
 	    				});
@@ -61,16 +73,37 @@
 					<h3 class="panel-title">
 						<spring:message code="entrada.simular.header" />
 					</h3>
-					<form class="form-horizontal" id="formNovo">
+					<form class="form-horizontal" id="formSimular">
 						<div class="form-group">
-							<label class="col-lg-2 control-label" for="comboFuncionario"><spring:message code='entrada.simular.funcionario' />:</label>
+							<label class="col-lg-2 control-label" for="funcionario"><spring:message code='entrada.simular.funcionario' />:</label>
 							<div class="col-lg-10">
-								<select class="form-control" id="comboFuncionario">
-									<option id="0" value="0">Selecione</option>
+								<select class="form-control" id="funcionario" required="required" name="funcionario">
+									<option value="">Selecione</option>
 									<c:forEach items="${funcionarios}" var="funcionario">
 										<option id="${funcionario.id}" value="${funcionario.id}">${funcionario.nome}</option>
 									</c:forEach>
 								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-2 control-label" for="dataHora"><spring:message code='entrada.simular.horario' />:</label>
+							<div class="col-lg-10">
+								<div class="input-append date form_datetime">
+									<input id="dataHora" name="dataHora" type="text" readonly class="form-control" required="required">
+									<span class="add-on">
+										<i class="icon-remove"></i>
+									</span>
+									<span class="add-on">
+										 <i class="icon-calendar"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-lg-offset-2 col-lg-10">
+								<button id="btnCadastrar" class="btn btn-default" type="button" data-loading-text="<spring:message code='comum.processando' />"><spring:message code='comum.cadastrar' /></button>
 							</div>
 						</div>
 					</form>

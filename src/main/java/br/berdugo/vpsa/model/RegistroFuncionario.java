@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.berdugo.vpsa.enums.TipoRegistro;
 
 @Entity(name = "registro_funcionario")
@@ -25,6 +27,7 @@ public class RegistroFuncionario {
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy - hh:mm:ss")
 	private Calendar dataHora;
 	
 	@Enumerated(EnumType.STRING)
