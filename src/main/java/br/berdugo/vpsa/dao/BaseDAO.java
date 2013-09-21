@@ -4,7 +4,9 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.berdugo.vpsa.dao.interfaces.IDAO;
@@ -68,5 +70,18 @@ public abstract class BaseDAO<T> implements IDAO<T> {
 		} catch (Exception exception) {
 			logger.error(exception);
 		}
+	}
+	
+	@Override
+	public List<T> findByCriteria(DetachedCriteria criteria) {
+		try {
+			Criteria crit = criteria.getExecutableCriteria(this.sessionFactory.getCurrentSession());
+			
+			return (List<T>) crit.list();
+		} catch (Exception exception) {
+			logger.error(exception);
+		}
+		
+		return null;
 	}
 }

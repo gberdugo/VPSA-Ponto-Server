@@ -4,12 +4,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import br.berdugo.vpsa.validator.funcionario.FuncionarioValidatorTest;
+
 @RunWith(Suite.class)
 @SuiteClasses({
-	SuiteFuncionario.class,
-	SuiteRegistroFuncionario.class,
-	SuiteUtils.class
+	FuncionarioValidatorTest.class
 })
-public class SuiteTestesUnitarios {
-	
+public class SuiteFuncionario {
+
 }

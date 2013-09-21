@@ -2,6 +2,7 @@ package br.berdugo.vpsa.model;
 
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,9 +29,11 @@ public class RegistroFuncionario {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy - hh:mm:ss")
+	@Column(nullable = false)
 	private Calendar dataHora;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private TipoRegistro tipo;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)

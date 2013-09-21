@@ -2,6 +2,8 @@ package br.berdugo.vpsa.dao.interfaces;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 public interface IDAO<T> {
 	
 	public Class<T> getPersistentClass();
@@ -13,4 +15,6 @@ public interface IDAO<T> {
 	public T findById(Long id);
 	
 	public void delete(Long id);
+	
+	public List<T> findByCriteria(DetachedCriteria criteria);
 }

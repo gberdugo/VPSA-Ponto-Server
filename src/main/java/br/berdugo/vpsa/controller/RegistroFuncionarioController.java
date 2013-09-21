@@ -1,6 +1,7 @@
 package br.berdugo.vpsa.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import br.berdugo.vpsa.service.interfaces.IRegistroFuncionarioService;
 import br.berdugo.vpsa.utils.I18N;
 import br.berdugo.vpsa.utils.JSONReponse;
 import br.berdugo.vpsa.utils.ValidationException;
+import br.berdugo.vpsa.validator.registro.RegistroFuncionarioValidator;
 
 @Controller
 @RequestMapping(value = "/registro")
@@ -39,6 +41,8 @@ public class RegistroFuncionarioController {
     protected void initBinder(WebDataBinder binder, HttpServletRequest request) {
     	RegistroFuncionario funcionario = (RegistroFuncionario)binder.getTarget();
     	funcionario.setFuncionario(funcionarioService.buscarPorId(Long.parseLong(request.getParameter("funcionario"))));
+    	
+    	binder.setValidator(new RegistroFuncionarioValidator());
     }
 
     @RequestMapping(value = "/simular", method = RequestMethod.GET)
@@ -51,7 +55,7 @@ public class RegistroFuncionarioController {
     @RequestMapping(value = "/simular", method = RequestMethod.POST)
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     @ResponseBody
-    public JSONReponse simular(@ModelAttribute("registro") RegistroFuncionario registro, BindingResult result) throws Exception {
+    public JSONReponse simular(@Valid @ModelAttribute("registro") RegistroFuncionario registro, BindingResult result) throws Exception {
     	JSONReponse response = new JSONReponse();
     	
     	if (!result.hasErrors()) {
