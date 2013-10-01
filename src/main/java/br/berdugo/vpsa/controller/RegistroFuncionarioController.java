@@ -1,6 +1,8 @@
 package br.berdugo.vpsa.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import br.berdugo.vpsa.enums.Status;
 import br.berdugo.vpsa.model.RegistroFuncionario;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 import br.berdugo.vpsa.service.interfaces.IRegistroFuncionarioService;
+import br.berdugo.vpsa.utils.CustomCalendarEditor;
 import br.berdugo.vpsa.utils.I18N;
 import br.berdugo.vpsa.utils.JSONReponse;
 import br.berdugo.vpsa.utils.ValidationException;
@@ -37,12 +40,15 @@ public class RegistroFuncionarioController {
 	@Autowired
 	private IRegistroFuncionarioService registroFuncionarioService;
 	
+	@Autowired
+	private RegistroFuncionarioValidator validator;
+	
 	@InitBinder("registro")
-    protected void initBinder(WebDataBinder binder, HttpServletRequest request) {
-    	RegistroFuncionario funcionario = (RegistroFuncionario)binder.getTarget();
-    	funcionario.setFuncionario(funcionarioService.buscarPorId(Long.parseLong(request.getParameter("funcionario"))));
+    protected void initBinder(WebDataBinder binder) {
+    	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss");
+    	binder.registerCustomEditor(Calendar.class, new CustomCalendarEditor(format, false));
     	
-    	binder.setValidator(new RegistroFuncionarioValidator());
+    	binder.setValidator(validator);
     }
 
     @RequestMapping(value = "/simular", method = RequestMethod.GET)

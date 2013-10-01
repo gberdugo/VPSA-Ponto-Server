@@ -33,9 +33,12 @@ public class FuncionarioController {
     @Autowired
     private IFuncionarioService service;
     
+    @Autowired
+    private FuncionarioValidator validator;
+    
     @InitBinder("funcionario")
     protected void initBinder(WebDataBinder binder) {
-    	binder.setValidator(new FuncionarioValidator());
+    	binder.setValidator(validator);
     }
     
     @ResponseBody

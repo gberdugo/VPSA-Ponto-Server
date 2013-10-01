@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +23,8 @@ public class RegistroFuncionarioDAO extends BaseDAO<RegistroFuncionario> impleme
 		criteria.createAlias("funcionario", "funcionario");
 		criteria.add(Restrictions.eq("funcionario.id", funcionario.getId()));
 		criteria.add(Restrictions.between("dataHora", CalendarUtils.getInicioDia(data), CalendarUtils.getFinalDia(data)));
+		
+		criteria.addOrder(Order.desc("dataHora"));
 		
 		List<RegistroFuncionario> registros = this.findByCriteria(criteria);
 		

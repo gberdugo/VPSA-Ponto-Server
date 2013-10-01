@@ -1,11 +1,13 @@
 package br.berdugo.vpsa.validator.funcionario;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import br.berdugo.vpsa.model.Funcionario;
 
+@Component
 public class FuncionarioValidator implements Validator {
 
 	@Override

@@ -56,7 +56,7 @@ public abstract class BaseDAO<T> implements IDAO<T> {
 	@Override
 	public T findById(Long id) {
 		try {
-			return (T)this.sessionFactory.getCurrentSession().load(getPersistentClass(), id);
+			return (T)this.sessionFactory.getCurrentSession().get(getPersistentClass(), id);
 		} catch (Exception exception) {
 			logger.error(exception);
 		}

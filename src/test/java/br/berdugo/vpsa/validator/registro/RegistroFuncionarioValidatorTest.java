@@ -8,11 +8,15 @@ import java.util.GregorianCalendar;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
 import br.berdugo.vpsa.model.Funcionario;
 import br.berdugo.vpsa.model.RegistroFuncionario;
+import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 
 public class RegistroFuncionarioValidatorTest {
 	
@@ -21,9 +25,16 @@ public class RegistroFuncionarioValidatorTest {
 	
 	private RegistroFuncionarioValidator validator;
 	
+	@Mock
+	private IFuncionarioService funcionarioService;
+	
 	@Before
 	public void setup() {
+		MockitoAnnotations.initMocks(this);
+
 		validator = new RegistroFuncionarioValidator();
+		
+		validator.setFuncionarioService(funcionarioService);
 	}
 
 	@Test
@@ -34,7 +45,48 @@ public class RegistroFuncionarioValidatorTest {
 		validator.validate(registro, errors);
 		
 		assertTrue(errors.hasErrors());
-		assertEquals("entrada.validacao.funcionario", errors.getFieldError().getCode());
+		assertEquals("entrada.validacao.funcionario", errors.getAllErrors().get(0).getCode());
+	}
+	
+	@Test
+	public void deveLancarExcecaoSeIdDoFuncionarioForNulo() {
+		Funcionario funcionario = new Funcionario();
+		funcionario.setId(null);
+		
+		RegistroFuncionario registro = getRegistro(funcionario, DATA_REGISTRO);
+		Errors errors = new BeanPropertyBindingResult(registro, "registro");
+		
+		validator.validate(registro, errors);
+		
+		assertTrue(errors.hasErrors());
+		assertEquals("entrada.validacao.funcionario", errors.getAllErrors().get(0).getCode());
+	}
+	
+	@Test
+	public void deveLancarExcecaoSeIdDoFuncionarioForZero() {
+		Funcionario funcionario = new Funcionario();
+		funcionario.setId(0L);
+		
+		RegistroFuncionario registro = getRegistro(funcionario, DATA_REGISTRO);
+		Errors errors = new BeanPropertyBindingResult(registro, "registro");
+		
+		validator.validate(registro, errors);
+		
+		assertTrue(errors.hasErrors());
+		assertEquals("entrada.validacao.funcionario", errors.getAllErrors().get(0).getCode());
+	}
+	
+	@Test
+	public void deveLancarExcecaoSeOFuncionarioNaoExistir() {
+		Mockito.when(funcionarioService.buscarPorId(FUNCIONARIO_ID)).thenReturn(null);
+		
+		RegistroFuncionario registro = getRegistro(getFuncionario(), DATA_REGISTRO);
+		Errors errors = new BeanPropertyBindingResult(registro, "registro");
+		
+		validator.validate(registro, errors);
+		
+		assertTrue(errors.hasErrors());
+		assertEquals("entrada.validacao.funcionario.inexistente", errors.getAllErrors().get(0).getCode());
 	}
 	
 	@Test
