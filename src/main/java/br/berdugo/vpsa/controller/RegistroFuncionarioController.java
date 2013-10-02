@@ -45,7 +45,7 @@ public class RegistroFuncionarioController {
 	
 	@InitBinder("registro")
     protected void initBinder(WebDataBinder binder) {
-    	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss");
+    	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
     	binder.registerCustomEditor(Calendar.class, new CustomCalendarEditor(format, false));
     	
     	binder.setValidator(validator);

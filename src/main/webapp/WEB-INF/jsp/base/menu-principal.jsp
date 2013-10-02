@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!-- Static navbar -->
 <div class="navbar navbar-default">
@@ -20,12 +21,12 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> gberdugo <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="/funcionario/listar" title="Funcionários">Funcionários</a></li>
-					<li><a href="#">Relatórios</a></li>
+					<li><a href="/funcionario/listar" title="Funcionários"><spring:message code="menu.funcionarios" /></a></li>
+					<li><a href="#"><spring:message code="menu.relatorios" /></a></li>
 					<li><a href="/registro/simular">Simular Entrada</a></li>
 					<li class="divider"></li>
-					<li class="dropdown-header">OPÇÕES</li>
-					<li><a href="#">Sair</a></li>
+					<li class="dropdown-header"><spring:message code="menu.opcoes.upper" /></li>
+					<li><a href="#"><spring:message code="menu.sair" /></a></li>
 				</ul>
 			</li>
 		</ul>

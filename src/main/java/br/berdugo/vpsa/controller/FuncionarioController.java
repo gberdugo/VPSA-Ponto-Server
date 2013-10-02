@@ -1,5 +1,9 @@
 package br.berdugo.vpsa.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.berdugo.vpsa.adapter.funcionario.GeradorRelatorioFuncionarioAdapter;
+import br.berdugo.vpsa.enums.ReportType;
 import br.berdugo.vpsa.enums.Status;
 import br.berdugo.vpsa.model.Funcionario;
+import br.berdugo.vpsa.relatorios.funcionario.GeradorRelatorioFuncionario;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 import br.berdugo.vpsa.utils.I18N;
 import br.berdugo.vpsa.utils.JSONReponse;
@@ -35,6 +42,12 @@ public class FuncionarioController {
     
     @Autowired
     private FuncionarioValidator validator;
+    
+    @Autowired
+    private GeradorRelatorioFuncionario geradorRelatorio;
+    
+    @Autowired
+    private GeradorRelatorioFuncionarioAdapter adapter;
     
     @InitBinder("funcionario")
     protected void initBinder(WebDataBinder binder) {
@@ -90,6 +103,20 @@ public class FuncionarioController {
     	model.addAttribute("funcionarioEditado", service.buscarPorId(idFuncionario));
     	
         return "/funcionario/novo";
+    }
+    
+    @RequestMapping(value = "/relatorio/pdf", method = RequestMethod.GET)
+    public void gerarRelatorioPdf(HttpServletResponse response) {
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	
+    	geradorRelatorio.gerar(adapter.adapt(service.listar()), params ,ReportType.PDF, response);
+    }
+    
+    @RequestMapping(value = "/relatorio/xls", method = RequestMethod.GET)
+    public void gerarRelatorioXls(HttpServletResponse response) {
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	
+    	geradorRelatorio.gerar(adapter.adapt(service.listar()), params ,ReportType.XLS, response);
     }
     
     @ExceptionHandler

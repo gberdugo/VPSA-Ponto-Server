@@ -103,11 +103,11 @@
 					class="col-xs-6 col-sm-3 sidebar-offcanvas">
 					<div class="well sidebar-nav">
 						<ul class="nav">
-							<li>Opções</li>
-							<li class="active"><a href="/funcionario/novo" title="Cadastrar um novo funcionário">Novo</a></li>
-							<li>Exportar</li>
-							<li><a href="#">PDF</a></li>
-							<li><a href="#">CSV</a></li>
+							<li><spring:message code="menu.opcoes" /></li>
+							<li class="active"><a href="/funcionario/novo" title='<spring:message code="funcionario.menu.novo" />'><spring:message code="menu.novo" /></a></li>
+							<li><spring:message code="menu.exportar" /></li>
+							<li><a href="/funcionario/relatorio/pdf" target="_blank"><spring:message code="menu.pdf" /></a></li>
+							<li><a href="/funcionario/relatorio/xls" target="_blank"><spring:message code="menu.xls" /></a></li>
 						</ul>
 					</div>
 				</div>
