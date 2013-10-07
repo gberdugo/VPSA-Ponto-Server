@@ -36,6 +36,11 @@ public class RegistroFuncionarioValidatorTest {
 		
 		validator.setFuncionarioService(funcionarioService);
 	}
+	
+	@Test
+	public void deveSuportarUmRegistroFuncionario() {
+		assertTrue(validator.supports(RegistroFuncionario.class));
+	}
 
 	@Test
 	public void deveLancarExcecaoSeFuncionarioForNulo() {

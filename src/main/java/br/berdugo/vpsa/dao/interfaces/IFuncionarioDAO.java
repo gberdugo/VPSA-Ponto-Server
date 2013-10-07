@@ -4,4 +4,6 @@ import br.berdugo.vpsa.model.Funcionario;
 
 public interface IFuncionarioDAO extends IDAO<Funcionario> {
 
+	Funcionario findByRfid(String nroRfid);
+
 }

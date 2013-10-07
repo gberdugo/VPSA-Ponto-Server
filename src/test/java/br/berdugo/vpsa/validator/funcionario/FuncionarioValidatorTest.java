@@ -8,11 +8,9 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
 import br.berdugo.vpsa.model.Funcionario;
+import br.berdugo.vpsa.utils.TestUtils;
 
 public class FuncionarioValidatorTest {
-	
-	private static final String RFID = "12345";
-	private static final String NOME_FUNCIONARIO = "Nome";
 	
 	private FuncionarioValidator validator;
 	
@@ -20,10 +18,17 @@ public class FuncionarioValidatorTest {
 	public void setup() {
 		validator = new FuncionarioValidator();
 	}
+	
+	@Test
+	public void deveSuportarUmFuncionario() {
+		assertTrue(validator.supports(Funcionario.class));
+	}
 
 	@Test
 	public void deveLancarExcecaoSeNomeFuncionarioForNulo() {
-		Funcionario funcionario = getFuncionario(null, RFID);
+		Funcionario funcionario = TestUtils.getFuncionario();
+		funcionario.setNome(null);
+		
 		Errors errors = new BeanPropertyBindingResult(funcionario, "funcionario");
 		
 		validator.validate(funcionario, errors);
@@ -34,7 +39,9 @@ public class FuncionarioValidatorTest {
 	
 	@Test
 	public void deveLancarExcecaoSeNomeFuncionarioForComEspacoEmBranco() {
-		Funcionario funcionario = getFuncionario(" ", RFID);
+		Funcionario funcionario = TestUtils.getFuncionario();
+		funcionario.setNome(" ");
+		
 		Errors errors = new BeanPropertyBindingResult(funcionario, "funcionario");
 		
 		validator.validate(funcionario, errors);
@@ -45,7 +52,9 @@ public class FuncionarioValidatorTest {
 	
 	@Test
 	public void deveLancarExcecaoSeRfidFuncionarioForNulo() {
-		Funcionario funcionario = getFuncionario(NOME_FUNCIONARIO, null);
+		Funcionario funcionario = TestUtils.getFuncionario();
+		funcionario.setCodigoRFID(null);
+		
 		Errors errors = new BeanPropertyBindingResult(funcionario, "funcionario");
 		
 		validator.validate(funcionario, errors);
@@ -56,21 +65,14 @@ public class FuncionarioValidatorTest {
 	
 	@Test
 	public void deveLancarExcecaoSeRfidFuncionarioForComEspacoEmBranco() {
-		Funcionario funcionario = getFuncionario(NOME_FUNCIONARIO, " ");
+		Funcionario funcionario = TestUtils.getFuncionario();
+		funcionario.setCodigoRFID(" ");
+		
 		Errors errors = new BeanPropertyBindingResult(funcionario, "funcionario");
 		
 		validator.validate(funcionario, errors);
 		
 		assertTrue(errors.hasErrors());
 		assertEquals("funcionario.validacao.rfid", errors.getFieldError().getCode());
-	}
-
-	private Funcionario getFuncionario(String nome, String rfid) {
-		Funcionario funcionario = new Funcionario();
-		
-		funcionario.setNome(nome);
-		funcionario.setCodigoRFID(rfid);
-		
-		return funcionario;
 	}
 }

@@ -17,4 +17,6 @@ public interface IDAO<T> {
 	public void delete(Long id);
 	
 	public List<T> findByCriteria(DetachedCriteria criteria);
+	
+	public T findOneByCriteria(DetachedCriteria criteria);
 }

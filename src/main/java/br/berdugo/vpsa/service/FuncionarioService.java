@@ -39,4 +39,9 @@ public class FuncionarioService implements IFuncionarioService {
 	public Funcionario buscarPorId(Long idFuncionario) {
 		return dao.findById(idFuncionario);
 	}
+	
+	@Override
+	public Funcionario buscarPorNroRfid(String nroRfid) {
+		return dao.findByRfid(nroRfid);
+	}
 }

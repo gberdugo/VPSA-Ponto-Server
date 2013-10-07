@@ -84,4 +84,17 @@ public abstract class BaseDAO<T> implements IDAO<T> {
 		
 		return null;
 	}
+	
+	@Override
+	public T findOneByCriteria(DetachedCriteria criteria) {
+		try {
+			Criteria crit = criteria.getExecutableCriteria(this.sessionFactory.getCurrentSession());
+			
+			return (T) crit.uniqueResult();
+		} catch (Exception exception) {
+			logger.error(exception);
+		}
+		
+		return null;
+	}
 }

@@ -15,4 +15,6 @@ public interface IFuncionarioService {
 	public void remover(Long idFuncionario);
 	
 	public Funcionario buscarPorId(Long idFuncionario);
+
+	public Funcionario buscarPorNroRfid(String nroRfid);
 }
