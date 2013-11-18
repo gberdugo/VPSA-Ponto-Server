@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.berdugo.vpsa.enums.Status;
 import br.berdugo.vpsa.model.RegistroFuncionario;
-import br.berdugo.vpsa.pojo.funcionario.RegistroArduinoPojo;
+import br.berdugo.vpsa.pojo.registro.RegistroArduinoPojo;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 import br.berdugo.vpsa.service.interfaces.IRegistroFuncionarioService;
 import br.berdugo.vpsa.utils.CustomCalendarEditor;

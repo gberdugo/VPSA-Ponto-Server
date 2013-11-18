@@ -2,13 +2,13 @@ package br.berdugo.vpsa.enums;
 
 import br.berdugo.vpsa.utils.I18N;
 
-public enum ReportType {
-	PDF(I18N.getString("menu.pdf")),
-	XLS(I18N.getString("menu.xls"));
+public enum ReportData {
+	ANALITICO(I18N.getString("comum.analitico.enum")),
+	SINTETICO(I18N.getString("comum.sintetico.enum"));
 	
 	private String nome;
 	
-	private ReportType(String nome) {
+	private ReportData(String nome) {
 		this.nome = nome;
 	}
 	

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.berdugo.vpsa.adapter.funcionario.GeradorRelatorioFuncionarioAdapter;
+import br.berdugo.vpsa.adapter.funcionario.RelatorioFuncionarioAdapter;
 import br.berdugo.vpsa.enums.ReportType;
 import br.berdugo.vpsa.enums.Status;
 import br.berdugo.vpsa.model.Funcionario;
@@ -47,7 +47,7 @@ public class FuncionarioController {
     private GeradorRelatorioFuncionario geradorRelatorio;
     
     @Autowired
-    private GeradorRelatorioFuncionarioAdapter adapter;
+    private RelatorioFuncionarioAdapter adapter;
     
     @InitBinder("funcionario")
     protected void initBinder(WebDataBinder binder) {

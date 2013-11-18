@@ -42,7 +42,7 @@
 	    					url: "/funcionario/novo", 
 	    					type: "POST", 
 	    					cache: false,	 
-	    					data:$("#formNovo").serialize(),
+	    					data: $("#formNovo").serialize(),
 	    					success: successHandler, 
 	    					error: errorHandler
 	    				});

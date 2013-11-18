@@ -74,7 +74,7 @@
 					</h3>
 					<form class="form-horizontal" id="formSimular">
 						<div class="form-group">
-							<label class="col-lg-2 control-label" for="funcionario.id"><spring:message code='entrada.simular.funcionario' />:</label>
+							<label class="col-lg-2 control-label" for="funcionario.id"><spring:message code='comum.funcionario' />:</label>
 							<div class="col-lg-10">
 								<select class="form-control" id="funcionario.id" required="required" name="funcionario.id">
 									<option value="">Selecione</option>

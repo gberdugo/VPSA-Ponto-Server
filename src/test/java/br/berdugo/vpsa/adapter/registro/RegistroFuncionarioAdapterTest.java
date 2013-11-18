@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import br.berdugo.vpsa.model.RegistroFuncionario;
-import br.berdugo.vpsa.pojo.funcionario.RegistroArduinoPojo;
+import br.berdugo.vpsa.pojo.registro.RegistroArduinoPojo;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 import br.berdugo.vpsa.utils.TestUtils;
 

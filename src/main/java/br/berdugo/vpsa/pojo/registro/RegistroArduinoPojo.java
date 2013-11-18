@@ -1,4 +1,4 @@
-package br.berdugo.vpsa.pojo.funcionario;
+package br.berdugo.vpsa.pojo.registro;
 
 public class RegistroArduinoPojo {
 

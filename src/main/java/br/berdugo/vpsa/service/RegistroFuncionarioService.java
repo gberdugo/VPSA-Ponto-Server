@@ -8,7 +8,7 @@ import br.berdugo.vpsa.dao.interfaces.IRegistroFuncionarioDAO;
 import br.berdugo.vpsa.enums.TipoRegistro;
 import br.berdugo.vpsa.model.Funcionario;
 import br.berdugo.vpsa.model.RegistroFuncionario;
-import br.berdugo.vpsa.pojo.funcionario.RegistroArduinoPojo;
+import br.berdugo.vpsa.pojo.registro.RegistroArduinoPojo;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 import br.berdugo.vpsa.service.interfaces.IRegistroFuncionarioService;
 

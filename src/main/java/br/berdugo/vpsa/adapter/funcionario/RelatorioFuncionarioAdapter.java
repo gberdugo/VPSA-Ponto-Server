@@ -9,7 +9,7 @@ import br.berdugo.vpsa.model.Funcionario;
 import br.berdugo.vpsa.pojo.funcionario.FuncionarioRelatorioPojo;
 
 @Component
-public class GeradorRelatorioFuncionarioAdapter {
+public class RelatorioFuncionarioAdapter {
 
 	public List<FuncionarioRelatorioPojo> adapt(List<Funcionario> funcionarios) {
 		List<FuncionarioRelatorioPojo> retorno = new ArrayList<FuncionarioRelatorioPojo>();

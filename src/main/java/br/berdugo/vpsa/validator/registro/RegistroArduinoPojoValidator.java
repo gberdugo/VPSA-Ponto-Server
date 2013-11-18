@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import br.berdugo.vpsa.pojo.funcionario.RegistroArduinoPojo;
+import br.berdugo.vpsa.pojo.registro.RegistroArduinoPojo;
 
 @Component
 public class RegistroArduinoPojoValidator implements Validator {

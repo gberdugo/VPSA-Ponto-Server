@@ -23,11 +23,11 @@ public class GeradorRelatorioFuncionarioAdapterTest {
 	private static final String FUNCIONARIO_B_RFID = "4321";
 	private static final String FUNCIONARIO_B_NOME = "NOME B";
 	
-	private GeradorRelatorioFuncionarioAdapter adapter;
+	private RelatorioFuncionarioAdapter adapter;
 	
 	@Before
 	public void setup() {
-		adapter = new GeradorRelatorioFuncionarioAdapter();
+		adapter = new RelatorioFuncionarioAdapter();
 	}
 	
 	@Test

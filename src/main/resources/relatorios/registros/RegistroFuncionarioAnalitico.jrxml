@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RegistroFuncionarioAnalitico" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="messages" uuid="6227f044-945b-4d1b-9f09-c507e31cc129">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="30"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="data" class="java.util.Calendar"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Estudos\\Engenharia Elétrica\\TCC\\Projetos\\VPSA-Ponto-Server\\src\\main\\resources\\relatorios\\registros\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="horas" class="java.util.List">
+		<fieldDescription><![CDATA[horas]]></fieldDescription>
+	</field>
+	<field name="mesAno" class="java.lang.String">
+		<fieldDescription><![CDATA[mesAno]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="rfid" class="java.lang.String">
+		<fieldDescription><![CDATA[rfid]]></fieldDescription>
+	</field>
+	<variable name="NUMERO_PAGINAS" class="java.lang.Integer" incrementType="Page" calculation="Count">
+		<variableExpression><![CDATA[$V{NUMERO_PAGINAS}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ace6473f-e1fb-4315-8525-70aca80578ec" x="0" y="0" width="802" height="79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70">
+			<textField>
+				<reportElement uuid="56ff6b5c-c226-454e-bb90-fc4200ec9893" x="0" y="30" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.nome} + ":"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cdb31fa6-37b3-4f3f-8c88-004c84fae8e3" x="100" y="30" width="574" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="36d7e5cb-4af7-4449-8ab9-3ce76e3c072a" x="0" y="50" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.jornada} + ":"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="28c8c38e-5cb7-4355-9cf5-c87264606625" x="100" y="50" width="60" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["08:00"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="08de21d1-962c-4b4c-93e7-d807e42cf23b" x="0" y="0" width="802" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mesAno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="34018aff-1783-4b2a-b5ad-b3f5af7198c9" x="400" y="50" width="274" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rfid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7f9250de-d144-40b3-9abc-d993bb09025b" x="300" y="50" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.cartao} + ":"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="963c0972-3183-4004-880b-5ae6d7bba1dd" x="0" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.dia.do.mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="877c25a8-c239-4478-bd06-d0d5a6aee6e4" x="100" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.dia.da.semana}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0419ff0-eadb-4747-9129-628a2123a9e3" x="200" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.entrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="01f3e12d-c86f-4d4e-8d62-126c5123ef9e" x="300" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.saida.almoco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ae7209e3-db08-4bf4-8c6e-e4e1a11c19a8" x="400" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.entrada.almoco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="96856495-04d2-4563-aa4b-11770b68bda8" x="500" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.saida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6ba8b353-34a7-4804-be0c-3807a150f445" x="600" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3c38761a-69b0-496e-bcba-ab2f8060e38f" x="700" y="0" width="102" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{registro.relatorio.analitico.adicional}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<subreport>
+				<reportElement uuid="237e98c7-830f-4085-9cb4-d2ea5b1e4b93" x="0" y="0" width="802" height="20"/>
+				<dataSourceExpression><![CDATA[$F{horas}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RegistroFuncionarioAnaliticoHoras.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="6384b976-0eda-4b0c-b6d7-282701e8b8b9" x="0" y="0" width="300" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{comum.relatorio.gerado} + ": " + new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss").format($P{data}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d5f85d67-4c1b-49f3-bc44-ade7d26ce074" x="300" y="0" width="502" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$R{comum.relatorio.pagina} + " " + $V{PAGE_NUMBER} + " " + $R{comum.relatorio.pagina.de} + " " + $V{NUMERO_PAGINAS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

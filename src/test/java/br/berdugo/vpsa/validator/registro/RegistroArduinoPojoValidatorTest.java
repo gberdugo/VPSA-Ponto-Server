@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
-import br.berdugo.vpsa.pojo.funcionario.RegistroArduinoPojo;
+import br.berdugo.vpsa.pojo.registro.RegistroArduinoPojo;
 import br.berdugo.vpsa.utils.TestUtils;
 
 public class RegistroArduinoPojoValidatorTest {

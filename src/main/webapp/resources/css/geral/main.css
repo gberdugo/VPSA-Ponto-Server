@@ -169,3 +169,16 @@ input:focus:required:invalid:focus {
 	text-decoration: none;
 	color: black;
 }
+
+.div-periodo {
+	display: flex;
+	width: 50%;
+} 
+
+.data-field {
+	width: 55%
+}
+
+.label-periodo {
+	
+}

@@ -18,7 +18,7 @@
       <!-- Jumbotron -->
       <div class="jumbotron">
         <h1>Entre!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+        <p class="lead">O VPSA Ponto permite o registro eletrônico dos horários dos representantes cadastrados no sistema, é fácil de usar e rápido de configurar, basta seguir os passos abaixo</p>
         <p><a class="btn btn-lg btn-success" href="#">Autenticar-se com o VPSA</a></p>
       </div>
 
@@ -26,15 +26,15 @@
       <div class="row">
         <div class="col-lg-4">
           <h2><i class="icon-exchange"></i> 1. Acesse,</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p>Faça o login com o CNPJ usado no VPSA e cadastre cartões para seus colaboradores...</p>
         </div>
         <div class="col-lg-4">
-          <h2><i class="icon-calendar-empty"></i> 2. bata o ponto ...</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h2><i class="icon-calendar-empty"></i> 2. bata o ponto...</h2>
+          <p>aproxime o cartão do leitor para registrar a saída/entrada...</p>
        </div>
         <div class="col-lg-4">
           <h2><i class="icon-certificate"></i> 3. ... e pronto!</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+          <p>gere relatórios gerenciais de horas trabalhadas, horas extras e devidas em poucos instantes.</p>
         </div>
       </div>
 

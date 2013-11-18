@@ -3,11 +3,13 @@ package br.berdugo.vpsa.adapter.registro;
 import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import br.berdugo.vpsa.model.RegistroFuncionario;
-import br.berdugo.vpsa.pojo.funcionario.RegistroArduinoPojo;
+import br.berdugo.vpsa.pojo.registro.RegistroArduinoPojo;
 import br.berdugo.vpsa.service.interfaces.IFuncionarioService;
 
+@Component
 public class RegistroFuncionarioAdapter {
 	
 	@Autowired
