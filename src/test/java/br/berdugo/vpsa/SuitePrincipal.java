@@ -9,7 +9,7 @@ import br.berdugo.vpsa.suites.SuiteTestesUnitarios;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	SuiteTestesUnitarios.class,
+	SuiteTestesUnitarios.class
 	//SuiteIntegrationTest.class
 })
 public class SuitePrincipal {
